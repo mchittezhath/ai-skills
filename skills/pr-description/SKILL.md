@@ -33,15 +33,20 @@ Generate clear, concise PR descriptions that help reviewers understand what a ch
 - Generic function names or file paths (unless there's a reason to highlight them).
 
 ## Format
+- The **first line** of the description must be the Jira ticket link (e.g. `https://<org>.atlassian.net/browse/ABC-123`), followed by a blank line, then the description body.
 - Write a clean, scannable description — 2-4 sentences is often perfect.
 - Use bullet points only when there are multiple distinct deliverables or important callouts.
 
 ## Procedure
 1. Identify the change set: read the provided diff, branch, commits, or summary. If none is provided, inspect the current changes.
-2. Determine the single core outcome the PR delivers and its impact.
-3. Draft 2-4 sentences capturing the problem/feature and impact.
-4. Add bullets only for multiple deliverables or review callouts (breaking changes, security, edge cases).
-5. Trim anything that restates the diff or explains implementation mechanics.
+2. Find the Jira ticket link:
+   - Infer it from the conversation context first (a pasted Jira URL, a ticket key like `ABC-123` mentioned by the user, the branch name, or commit messages). If only a key is found, build the full link from the Jira base URL seen elsewhere in the context.
+   - If no ticket link or key can be found, **ask the user** for it before drafting. Do not invent one.
+   - Put the link on the first line of the description.
+3. Determine the single core outcome the PR delivers and its impact.
+4. Draft the Jira link line, then 2-4 sentences capturing the problem/feature and impact.
+5. Add bullets only for multiple deliverables or review callouts (breaking changes, security, edge cases).
+6. Trim anything that restates the diff or explains implementation mechanics.
 
 ## Publish to the Remote PR
 After drafting, update the description on the actual pull request. Determine the target PR, show the user the drafted description, then push it.
